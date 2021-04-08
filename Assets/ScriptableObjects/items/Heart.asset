@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df5c6309d8d9e17468ad8e11e9fe1f76, type: 3}
+  m_Name: Heart
+  m_EditorClassIdentifier: 
+  itemSprite: {fileID: -4600928255170020331, guid: b05ea1dd6ee82f647adf2f4f84ca94c2, type: 3}
+  itemDescription: You got a heart! You are Healed by 1 heart.
+  isSmallKey: 0
+  isBossKey: 0
