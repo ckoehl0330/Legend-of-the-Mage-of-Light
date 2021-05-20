@@ -19,7 +19,7 @@ public class HeartContainerManager : MonoBehaviour
     }
     public void InitHearts()
     {
-        for(int i = 0; i < heartContainers.initialValue; i++)
+        for(int i = 0; i < heartContainers.RuntimeValue; i++)
         {
             hearts[i].gameObject.SetActive(true);
             hearts[i].sprite = fullHeart;
@@ -27,8 +27,9 @@ public class HeartContainerManager : MonoBehaviour
     }
     public void UpdateHearts()
     {
+        InitHearts();
         float tempHealth = currentPlayerHealth.RuntimeValue / 2;
-        for (int i = 0; i < heartContainers.initialValue; i++)
+        for (int i = 0; i < heartContainers.RuntimeValue; i++)
         {
             if(i <= tempHealth-1)
             {

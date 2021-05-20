@@ -10,9 +10,11 @@ public class EnemyAI : MonoBehaviour
     public string enemyName;
     public int baseAttack;
     public float moveSpeed;
+    public Vector2 homePos;
 
     [Header("Effects")]
     public GameObject deathEffect;
+    public LootTable thisLoot;
 
     [Header("Signals")]
     public SignalSender roomSignals;
@@ -20,20 +22,57 @@ public class EnemyAI : MonoBehaviour
     private void Awake()
     {
         health = maxHealth.initialValue;
+        
     }
+    private void OnEnable()
+    {
+        transform.position = homePos;
+        health = maxHealth.initialValue;
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        PlayerMovement player = other.GetComponent<PlayerMovement>();
+        if (player != null)
+        {
+            player.TakeDamage(baseAttack);
+        }
+    }
+
     public void TakeDamage(float damage)
     {
         health -= damage;
         if (health <= 0f)
         {
             health = 0f;
-            DeathEffect();
-            if (roomSignals != null)
-            {
+            IsDead();
+        }
+
+
+    }
+    public void IsDead()
+    {
+     
+        
+        
+         DeathEffect();
+         if (roomSignals != null)
+         {
                 roomSignals.Raise();
                 Debug.Log("EnemyHealth.cs: Death room signal raised");
+         }
+         MakeLoot();
+         this.gameObject.SetActive(false);
+        
+    }
+    private void MakeLoot()
+    {
+        if(thisLoot != null)
+        {
+            PowerUp current = thisLoot.LootPowerUp();
+            if(current != null)
+            {
+                Instantiate(current.gameObject, transform.position, Quaternion.identity);
             }
-            this.gameObject.SetActive(false);
         }
     }
     private void DeathEffect()

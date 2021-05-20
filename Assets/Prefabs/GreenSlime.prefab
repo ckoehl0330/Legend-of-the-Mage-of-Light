@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2554435777555375834}
   - component: {fileID: 2554435777555375835}
   - component: {fileID: 2554435777555375832}
-  - component: {fileID: 2554435777555375833}
   - component: {fileID: 2554435777555375812}
   - component: {fileID: 2554435777555375815}
   - component: {fileID: 2554435777555375814}
@@ -129,32 +128,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &2554435777555375833
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2554435777555375838}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.010194302, y: -0.38208354}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.55294657, y: 0.23583293}
-  m_EdgeRadius: 0
 --- !u!114 &2554435777555375812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +146,7 @@ MonoBehaviour:
   baseAttack: 1
   moveSpeed: 2
   deathEffect: {fileID: 2124577192488758582, guid: cbbf5051658765a4180723800e57cfdb, type: 3}
+  thisLoot: {fileID: 11400000, guid: bf350eb9e6d3c52459ffd23f34d420ff, type: 2}
   roomSignals: {fileID: 0}
   target: {fileID: 0}
   chaseRadius: 2

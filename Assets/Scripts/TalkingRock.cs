@@ -3,33 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class TalkingRock : InteractableStuff
 {
     
     public GameObject dialogBox;
     public Text dialogText;
     public string dialog;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public ControlsMaster controls;
 
+    // Start is called before the first frame update
+    private void Awake()
+    {
+        controls.Player.Interact.performed += _ => Interact();
+    }
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && playerInRange)
+    
+    }
+    public void Interact()
+    {
+        if (dialogBox.activeInHierarchy)
         {
-            if (dialogBox.activeInHierarchy)
-            {
-                dialogBox.SetActive(false);
-            }
-            else
-            {
-                dialogBox.SetActive(true);
-                dialogText.text = dialog;
-            }
+            dialogBox.SetActive(false);
+        }
+        else
+        {
+            dialogBox.SetActive(true);
+            dialogText.text = dialog;
         }
     }
   

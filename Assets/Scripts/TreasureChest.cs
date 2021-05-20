@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class TreasureChest : InteractableStuff
 {
@@ -12,8 +13,21 @@ public class TreasureChest : InteractableStuff
     public GameObject dialogBox;
     public Text dialogText;
     private Animator anim;
+    private ControlsMaster controls;
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        controls = new ControlsMaster();
+    }
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -21,16 +35,17 @@ public class TreasureChest : InteractableStuff
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && playerInRange)
+        
+    }
+    public void Interact()
+    {
+        if (!isOpen)
         {
-            if (!isOpen)
-            {
-                OpenChest();
-            }
-            else
-            {
-                ChestIsAlreadyOpen();
-            }
+            OpenChest();
+        }
+        else
+        {
+            ChestIsAlreadyOpen();
         }
     }
     public void OpenChest()

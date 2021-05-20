@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Breakable
+  - Boss
+  - Collision
   layers:
   - Default
   - TransparentFX
@@ -51,4 +53,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3957536553
+    locked: 0
+  - name: Bosses
+    uniqueID: 3655093011
     locked: 0

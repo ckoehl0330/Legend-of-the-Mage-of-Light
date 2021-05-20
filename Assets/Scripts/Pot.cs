@@ -5,6 +5,7 @@ using UnityEngine;
 public class Pot : MonoBehaviour
 {
     private Animator anim;
+    public LootTable thisLoot;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,18 @@ public class Pot : MonoBehaviour
     {
         anim.SetBool("IsDestroyed", true);
         yield return new WaitForSeconds(1f);
+        MakeLoot();
         gameObject.SetActive(false);
+    }
+    private void MakeLoot()
+    {
+        if (thisLoot != null)
+        {
+            PowerUp current = thisLoot.LootPowerUp();
+            if (current != null)
+            {
+                Instantiate(current.gameObject, transform.position, Quaternion.identity);
+            }
+        }
     }
 }

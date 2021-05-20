@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChallengeRoomsWithRewards : OverworldRooms
+
+public class ChallengeRoomsWithRewards : DungeonRooms
 {
     public Doors[] doors;
     public TreasureChest[] chests;
+   
 
     //public SignalListener enemyUpdate;
     //public Vector3 transportPlayer;
@@ -52,9 +54,7 @@ public class ChallengeRoomsWithRewards : OverworldRooms
         ShowChests();
 
     }
-
-
-    public void CloseDoors()
+     public void CloseDoors()
     {
         for (int i = 0; i < doors.Length; i++)
         {
@@ -87,9 +87,10 @@ public class ChallengeRoomsWithRewards : OverworldRooms
             chests[i].gameObject.SetActive(true);
         }
     }
-
+   
     public override void OnTriggerEnter2D(Collider2D other)
     {
+       
         if (other.CompareTag("Player") && !other.isTrigger)
         {
             // activate all enemies and pots
@@ -102,7 +103,14 @@ public class ChallengeRoomsWithRewards : OverworldRooms
             {
                 ChangeActivation(pots[i], true);
             }
+            for (int i = 0; i < bosses.Length; i++)
+            {
+                ChangeActivation(bosses[i], true);
+                
+            }
+
             CloseDoors();
+            mobsRemain = mobsToKill;
             vCam.SetActive(true);
         }
 

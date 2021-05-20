@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public enum DoorType
 {
@@ -17,26 +18,45 @@ public class Doors : InteractableStuff
     public SpriteRenderer doorSprite;
     public BoxCollider2D physicsForDoor;
     public BoxCollider2D thisTriggerArea;
+    private ControlsMaster controls;
 
-   void Update()
+    private void Awake()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        controls = new ControlsMaster();
+    }
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
+    void Update()
+    {
+        float interactInput = controls.Player.Interact.ReadValue<float>();
+        if(interactInput > .1f)
         {
-            if (playerInRange && thisDoorType == DoorType.smallKey)
+            Interact();
+        }
+          
+    }
+    public void Interact()
+    {
+        if (playerInRange && thisDoorType == DoorType.smallKey)
+        {
+            if (playerInventory.numberOfSmallKeys > 0)
             {
-                if (playerInventory.numberOfSmallKeys > 0)
-                {
-                    playerInventory.numberOfSmallKeys--;
-                    Open();
-                }
+                playerInventory.numberOfSmallKeys--;
+                Open();
             }
-            if (playerInRange && thisDoorType == DoorType.bossKey)
+        }
+        if (playerInRange && thisDoorType == DoorType.bossKey)
+        {
+            if (playerInventory.numberOfBossKeys > 0)
             {
-                if (playerInventory.numberOfBossKeys > 0)
-                {
-                    playerInventory.numberOfBossKeys--;
-                    Open();
-                }
+                playerInventory.numberOfBossKeys--;
+                Open();
             }
         }
     }

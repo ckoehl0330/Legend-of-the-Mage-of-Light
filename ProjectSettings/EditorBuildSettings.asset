@@ -14,4 +14,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DungeonofTheTwins1.unity
     guid: 388e9ae734161c943bf2868657ad98e2
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 1d20b352e2ba61640b17cf0d25f7e6a3, type: 2}
